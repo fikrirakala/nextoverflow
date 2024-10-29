@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Theme from "./Theme";
 
 export default function Navbar() {
   return (
@@ -13,6 +14,9 @@ export default function Navbar() {
         />
         <p className="text-2xl font-medium max-sm:hidden">NextOverflow</p>
       </Link>
+      <div>
+        <Theme />
+      </div>
     </nav>
   );
 }
