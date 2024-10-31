@@ -21,7 +21,9 @@ export default function MobileNav() {
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
+        <div className="lg:hidden">
+          <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
+        </div>
       </SheetTrigger>
       <SheetContent side="left" className="flex flex-col">
         <div className="flex-none">
