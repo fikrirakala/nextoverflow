@@ -2,8 +2,6 @@
 
 import { z } from "zod";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -24,6 +22,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { SignInSchema } from "@/lib/validations";
+import LoadingButton from "@/components/LoadingButton";
 
 export function SignInForm() {
   const form = useForm<z.infer<typeof SignInSchema>>({
@@ -84,9 +83,13 @@ export function SignInForm() {
                   </FormItem>
                 )}
               />
-              <Button type="submit" className="w-full">
+              <LoadingButton
+                loading={form.formState.isSubmitting}
+                type="submit"
+                className="w-full"
+              >
                 Submit
-              </Button>
+              </LoadingButton>
             </form>
           </Form>
           <SocialAuthForm />
