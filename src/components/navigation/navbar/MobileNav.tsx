@@ -21,7 +21,7 @@ export default function MobileNav() {
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <div className="lg:hidden">
+        <div className="">
           <Hamburger toggled={isOpen} toggle={setOpen} size={24} />
         </div>
       </SheetTrigger>
@@ -41,18 +41,18 @@ export default function MobileNav() {
 
         <div className="flex flex-1 flex-col justify-between overflow-y-auto">
           <SheetClose asChild>
-            <section className="flex flex-col gap-8 py-10">
+            <section className="flex flex-col gap-2 py-10">
               <NavLinks isMobileNav={true} />
             </section>
           </SheetClose>
           <div className="flex flex-col gap-3">
             <SheetClose asChild>
-              <Button asChild>
+              <Button asChild variant="secondary">
                 <Link href={ROUTES.SIGN_IN}>Log in</Link>
               </Button>
             </SheetClose>
             <SheetClose asChild>
-              <Button asChild>
+              <Button asChild variant="secondary">
                 <Link href={ROUTES.SIGN_UP}>Sign up</Link>
               </Button>
             </SheetClose>
