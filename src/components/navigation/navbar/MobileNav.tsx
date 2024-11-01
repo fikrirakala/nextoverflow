@@ -14,9 +14,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import NavLinks from "./NavLinks";
+import { useSession } from "next-auth/react";
+import LogoutButton from "../LogoutButton";
 
 export default function MobileNav() {
   const [isOpen, setOpen] = useState(false);
+
+  const { data: session } = useSession();
 
   return (
     <Sheet open={isOpen} onOpenChange={setOpen}>
@@ -45,18 +49,23 @@ export default function MobileNav() {
               <NavLinks isMobileNav={true} />
             </section>
           </SheetClose>
-          <div className="flex flex-col gap-3">
-            <SheetClose asChild>
-              <Button asChild variant="secondary">
-                <Link href={ROUTES.SIGN_IN}>Log in</Link>
-              </Button>
-            </SheetClose>
-            <SheetClose asChild>
-              <Button asChild variant="secondary">
-                <Link href={ROUTES.SIGN_UP}>Sign up</Link>
-              </Button>
-            </SheetClose>
-          </div>
+
+          {!session?.user ? (
+            <div className="flex flex-col gap-3">
+              <SheetClose asChild>
+                <Button asChild variant="secondary">
+                  <Link href={ROUTES.SIGN_IN}>Log In</Link>
+                </Button>
+              </SheetClose>
+              <SheetClose asChild>
+                <Button asChild variant="secondary">
+                  <Link href={ROUTES.SIGN_UP}>Sign up</Link>
+                </Button>
+              </SheetClose>
+            </div>
+          ) : (
+            <LogoutButton isMobileNav={true} />
+          )}
         </div>
       </SheetContent>
     </Sheet>
