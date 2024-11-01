@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 type NavLinkProps = {
-  isMobileNav: boolean;
+  isMobileNav?: boolean;
 };
 
 export default function NavLinks({ isMobileNav = false }: NavLinkProps) {
@@ -59,9 +59,11 @@ function LinkComponent({ href, icon, title, isMobileNav }: LinkComponentProps) {
         alt={title}
         width={20}
         height={20}
-        className={cn("invert", isActive && "invert-0")}
+        className={cn("invert dark:invert-0", isActive && "invert-0")}
       />
-      <p className={cn("font-medium")}>{title}</p>
+      <p className={cn("font-medium", !isMobileNav && "hidden lg:block")}>
+        {title}
+      </p>
     </Link>
   );
 
